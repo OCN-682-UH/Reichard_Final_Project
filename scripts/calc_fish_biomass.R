@@ -21,10 +21,10 @@ fish_sum_0 <- mbay_fish %>%
   group_by(Site,Year,SurveyID,Habitat_Category,Rugosity,Depth,Family) %>% 
   summarise("biomass"=sum(bio_line_gm2)) %>% ungroup() %>% #sum the biomass for every family and every transect
   pivot_wider(names_from = Family,values_from = biomass,values_fill = 0) %>% #pivot so that each family becomes a column and fill in zeros
-  pivot_longer(cols = c(Acanthuridae, Labridae, Scaridae), #pivot to longer so you can plot easier
+  select(Site,Year,SurveyID,Habitat_Category,Rugosity,Depth,Acanthuridae, Labridae, Scaridae) %>% 
+pivot_longer(cols = c(Acanthuridae, Labridae, Scaridae), #pivot to longer so you can plot easier
                names_to = "Family",
                values_to = "Biomass") %>% 
-select(Site,Year,SurveyID,Habitat_Category,Rugosity,Depth,Family,Biomass) %>% 
   ungroup()
  
 # site summary for habitat
@@ -41,10 +41,11 @@ summarise(mean_biomass = mean(Biomass, na.rm=TRUE),
               sd_biomass = sd(Biomass, na.rm = TRUE)) %>% 
     ungroup()
  
-   #make a plot
- site_sum_hab %>%  
- ggplot(aes(x = Habitat_Category, y = mean_biomass, fill = Family)) +
-  geom_boxplot()
+   #make a test plot
+ fish_sum_0 %>%  
+ ggplot(aes(x = log(Biomass+1), fill = Family)) +
+  geom_histogram()+
+   facet_wrap(~Family, scale = "free")
 
  site_sum_rug %>%  
    ggplot(aes(x = Rugosity, y = mean_biomass, fill = Family)) +
