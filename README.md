@@ -6,7 +6,13 @@ editor_options:
 
 # Reichard_Final_Project
 
-Final project for OCN-682 created by Jake Reichard
+Final project for OCN-682 created by Jake Reichard.
+
+# Introduction
+
+The Division of Aquatic Resources (DAR) conducted 313 transects from
+October 2024 to January 2025. Transects were 5m x 25m and encompassed
+fish and benthic surveys.
 
 # Data Dictionary
 
@@ -17,15 +23,20 @@ Oahu Fish & Benthic Transect Analysis Shiny application. The application
 analyzes fish biomass and benthic habitat characteristics across four
 coastal sites in Oahu, Hawaii.
 
+View the [interactive
+application](https://jakereichard.shinyapps.io/maunalua_bay_fish_assessments/).
+
 ## Input Data Files
 
 ### 1. Mbay_fish.csv
 
-Raw fish survey data containing species observations and biomass
-measurements.
+The data is exported from the DAR Marine Database. The raw fish survey
+data containing species observations and biomass measurements. The
+database export had extra information not used for the app. The
+following table lays out all the data used for this project.
 
 | Variable | Type | Description |
-|------------------------|------------------|-------------------------------|
+|----|----|----|
 | `Site` | Character | Site code (DHFM, MBAY, HBAY, WIKI) |
 | `Year` | Numeric | Year of survey |
 | `SurveyID` | Character | Unique identifier for each transect |
@@ -44,7 +55,7 @@ Species reference table linking taxonomic information to functional
 groups.
 
 | Variable   | Type      | Description                                         |
-|------------------------|------------------|-------------------------------|
+|------------|-----------|-----------------------------------------------------|
 | `Taxon`    | Character | Scientific name of fish species                     |
 | `Family`   | Character | Taxonomic family (Acanthuridae, Labridae, Scaridae) |
 | `Consumer` | Character | Trophic/functional group classification             |
@@ -57,7 +68,7 @@ Family-level biomass summarized by transect with zeros added for missing
 families.
 
 | Variable | Type | Description |
-|------------------------|------------------|-------------------------------|
+|----|----|----|
 | `Site` | Character | Site code |
 | `Year` | Numeric | Survey year |
 | `SurveyID` | Character | Transect identifier |
